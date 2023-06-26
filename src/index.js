@@ -6,6 +6,7 @@ const port = 4000
 
 
 app.use(middlewareLogRequest)
+app.use(express.json())
 
 app.use('/users', userRouters)
 
