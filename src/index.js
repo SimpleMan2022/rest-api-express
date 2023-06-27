@@ -1,14 +1,17 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
 const userRouters = require('./routers/users')
 const middlewareLogRequest = require('./middleware/logs')
-const port = 4000
+const port = process.env.PORT
 
 
 app.use(middlewareLogRequest)
 app.use(express.json())
 
 app.use('/users', userRouters)
+
 
 app.get('/index', (req, res) => {
     res.json({
