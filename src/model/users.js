@@ -5,8 +5,25 @@ const getAllUsers = ()=> {
     return dbPool.execute(sqlQuery)
 }
 
-// const createUser = ()=> {
-//     const sqlQuery = "INSERT INTO USERS(name,email,address) VALUES ('"
-// }
+const createUser = (body)=> {
+    const sqlQuery = `INSERT INTO users (name,email,address) VALUES ('${body.name}','${body.email}', '${body.address}' )`
 
-module.exports = {getAllUsers}
+    return dbPool.execute(sqlQuery)
+}
+
+const detailUser = (id)=>{
+    const sqlQuery = `SELECT * FROM users WHERE id=${id}`
+    return dbPool.execute(sqlQuery)
+}
+
+const updateuser = (body, id)=>{
+    const sqlQuery = `UPDATE users SET name='${body.name}', email='${body.email}', address='${body.address}' WHERE id=${id}`
+    return dbPool.execute(sqlQuery)
+}
+
+const deleteUser = (id)=> {
+    const sqlQuery = `DELETE FROM users WHERE id=${id}`
+    return dbPool.execute(sqlQuery)
+}
+
+module.exports = {getAllUsers, createUser,detailUser,updateuser ,deleteUser}
